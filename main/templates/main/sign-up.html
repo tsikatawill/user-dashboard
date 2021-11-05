@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} - Sign Up {% endblock %}
+
+{% block content %}
+<div class="sign-in-wrapper">
+    <div class="rowe">
+        <div class="left">
+            <img src="{% static '/img/register.svg' %}" alt="" srcset="">
+        </div>
+        <div class="right">
+          {% for message in messages %}
+          <div class="alert alert-danger alert-dismissible alert-sm fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+          {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger alert-dismissible alert-sm fade show" role="alert">
+                        {{error|escape}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <span class="mb-2 alert alert-danger alert-sm">{{error|escape}}</span>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+            <form class="form-inline sign-up" method="POST" action="">
+              {% csrf_token %}
+                <h2 class="text-center mb-3">Register</h2>
+                <div class="input-group my-4">
+                  {{form.username.label}}
+                  {{form.username}}
+              </div>
+              <div class="input-group">
+                  {{form.email.label}}
+                  {{form.email}}
+              </div>
+              <div class="input-group">
+                  {{form.first_name.label}}
+                  {{form.first_name}}
+              </div>
+              <div class="input-group">
+                  {{form.last_name.label}}
+                  {{form.last_name}}
+              </div>
+              <div class="input-group">
+                  {{form.password1.label}}
+                  {{form.password1}}
+              </div>
+              <div class="input-group">
+                  {{form.password2.label}}
+                  {{form.password2}}
+              </div>
+                <button type="submit" class="btn btn-primary mb-2 form-control">Submit</button>
+            </form>
+            <div class="sign-up-cta">
+                <p>Already have an account? <a href="{% url 'sign-in' %}">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    footer{
+        display: none;
+    }  
+</style>
+<script>
+  
+</script>
+{% endblock %}

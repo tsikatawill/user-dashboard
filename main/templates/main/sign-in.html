@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} - Sign In {% endblock %}
+
+{% block content %}
+<div class="sign-in-wrapper">
+    <div class="rowe">
+        <div class="left">
+            <img src="{% static '/img/login.svg' %}" alt="" srcset="">
+        </div>
+        <div class="right">
+          {% for message in messages %}
+          <div class="alert alert-success alert-dismissible alert-sm fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+            <form class="form-inline" method="POST">
+              {% csrf_token %}
+                <h2 class="text-center mb-3">Login</h2>
+                <div class="input-group mb-3 mr-sm-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-user"></i></div>
+                  </div>
+                  <input type="text" class="form-control" name="username" required placeholder="Enter your username">
+                </div>
+                <div class="input-group mb-3 mr-sm-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                  </div>
+                  <input type="password" class="form-control" name="password" required placeholder="Enter your password">
+                </div>
+                
+                <button type="submit" class="btn btn-primary mb-2 form-control">Sign In</button>
+              </form>
+              <div class="sign-up-cta">
+                  <p>Don't have an account? <a href="{% url 'sign-up' %}">Sign up</a></p>
+              </div>
+        </div>
+    </div>
+</div>
+<style>
+    footer{
+        display: none;
+    }  
+</style>
+
+{% endblock %}
