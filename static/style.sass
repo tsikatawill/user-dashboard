@@ -59,8 +59,20 @@ body
                     margin-bottom: 10px !important
                     input
                         padding: 5px 10px
+                        transition: all 0.4s ease-in-out
                         &:active,
                         &:focus,
                             border: 2px solid $tranparent_blue !important
                             outline: 2px solid $tranparent_blue !important
+
+@media screen and (max-width: 600px)
+    .rowe
+        flex-direction: column
+
+        .left
+            padding: 10px
+            img
+                height: 100%
+        .right
+            margin-top: 2rem
 
